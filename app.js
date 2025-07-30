@@ -11,7 +11,7 @@ app.use(express.json())
 
 // resolving errors from cors
 app.use(cors({
-    origin: "https://ztechlab.vercel.app",
+    origin: ["https://ztechlab.vercel.app", "http://localhost:5173", "https://www.ztechlabs.org"],
     methods: "POST, GET",
     credentials: true,
     headers: ['Content-Type, Authorization']
