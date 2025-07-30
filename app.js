@@ -10,29 +10,31 @@ dotenv.config();
 app.use(express.json())
 
 // resolving errors from cors
-// app.use(cors({
-//     origin: ["https://ztechlab.vercel.app/", "http://localhost:5173/", "https://www.ztechlabs.org/"],
-//     methods: "POST, GET",
-//     credentials: true,
-//     headers: ['Content-Type', 'Authorization']
-// }))
+app.use(cors({
+    origin: ["https://ztechlab.vercel.app", "http://localhost:5173", "https://www.ztechlabs.org"],
+    methods: ["POST", "GET"],
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
+// app.options('*', cors());
 // 
 
 
-const allowedOrigins = ["https://ztechlab.vercel.app/", "http://localhost:5173/", "https://www.ztechlabs.org/"];
+// const allowedOrigins = ["https://ztechlab.vercel.app/", "http://localhost:5173/", "https://www.ztechlabs.org/"];
 
-app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    methods: 'GET, PUT, PATCH, POST, DELETE, HEAD',
-    credentials: true, //Allow credentials (cookies, authorization headers)
-    headers: ['Content-Type, Authorization']
-}))
+// app.use(cors({
+//     origin: function (origin, callback) {
+//         if (!origin || allowedOrigins.includes(origin)) {
+//             callback(null, true);
+//         } else {
+//             callback(new Error('Not allowed by CORS'));
+//         }
+//     },
+//     methods: 'GET, PUT, PATCH, POST, DELETE, HEAD',
+//     credentials: true, //Allow credentials (cookies, authorization headers)
+//     headers: ['Content-Type, Authorization']
+// }))
 
 
 // routing
@@ -77,3 +79,5 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Server listening on ${port}`);
 });
+
+export default app;
